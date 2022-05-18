@@ -6,7 +6,8 @@ class RegistrationForm(Form):
     email = StringField('Email:', [validators.Length(min=6, max=35)])
     password = PasswordField('Nova Senha:', [
         validators.DataRequired(),
-        validators.EqualTo('Confirmação da Senha:', message='Senha e Confirmação não são iguais!!!')
+        validators.EqualTo('confirm', message='Senha e Confirmação não são iguais!!!')
     ])
     confirm = PasswordField('Repete a Senha')
+
   
