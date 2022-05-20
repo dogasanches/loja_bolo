@@ -8,7 +8,7 @@ import os
 
 @app.route('/')
 def home():
-    return "Teste"
+    return render_template ('admin/index.html',title='Pagina Administrativa')
 
 @app.route('/registrar', methods=['GET', 'POST'])
 def registrar():
@@ -18,6 +18,7 @@ def registrar():
         user = User(name=form.name.data,username=form.username.data, email=form.email.data,
         password=hash_password)
         db.session.add(user)
-        flash('Obrigado por se Registrar')
+        db.session.commit()
+        flash(f'Obrigado {form.name.data} por se Registrar','error')
         return redirect(url_for('home'))
     return render_template('admin/registrar.html', form=form, title="Pagina de Registro")
