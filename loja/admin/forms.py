@@ -10,4 +10,10 @@ class RegistrationForm(Form):
     ])
     confirm = PasswordField('Repete a Senha')
 
+class LoginFomulario(Form):
+    email = StringField('Email:', [validators.Length(min=6, max=35)])
+    password = PasswordField('Nova Senha:', [validators.DataRequired(),])
+    
+
+
   

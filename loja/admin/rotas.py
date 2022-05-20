@@ -1,8 +1,9 @@
+#from crypt import methods
 from turtle import title
 from flask import render_template,session,request,redirect,url_for,flash
 
-from loja import app, db,bcrypt
-from .forms import RegistrationForm
+from loja import app, db, bcrypt
+from .forms import RegistrationForm,LoginFomulario
 from .models import User
 import os
 
@@ -22,3 +23,10 @@ def registrar():
         flash(f'Obrigado {form.name.data} por se Registrar','error')
         return redirect(url_for('home'))
     return render_template('admin/registrar.html', form=form, title="Pagina de Registro")
+
+@app.route('/login',methods=['GET','POST'])
+def login():
+    form = LoginFomulario(request.form)
+    return render_template ('admin/login.html',form=form,title='Pagina Login')
+
+    
